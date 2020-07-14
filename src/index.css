@@ -1,5 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap');
 
+/* 
+INFO
+
+This file contains the global styles for the app.
+
+Most styling is done within components, using style props. These are mostly utility classes to handle
+styling changes under certain conditions, such as button hovers, as well as responsiveness.
+
+*/
+
 body {
   margin: 0;
   -webkit-font-smoothing: antialiased;
@@ -11,7 +21,14 @@ code {
     monospace;
 }
 
-@media only screen and (max-width: 800px) {
+.link-element {
+  cursor: pointer;
+}
+.link-element:hover {
+  text-decoration: underline;
+}
+
+@media only screen and (max-width: 1024px) {
 
   .mobile-switch-to-column {
     flex-direction: column;

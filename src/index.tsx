@@ -4,12 +4,16 @@ import { ThemeProvider, CSSReset } from '@chakra-ui/core';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
+import { BrowserRouter as Router } from 'react-router-dom';
+
 ReactDOM.render(
   <React.StrictMode>
-    <ThemeProvider>
-      <CSSReset />
-      <App />
-    </ThemeProvider>
+    <Router>
+      <ThemeProvider>
+        <CSSReset />
+        <App />
+      </ThemeProvider>
+    </Router>
   </React.StrictMode>,
   document.getElementById('root')
 );
@@ -18,4 +22,3 @@ ReactDOM.render(
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.unregister();
-  
