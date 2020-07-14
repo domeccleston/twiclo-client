@@ -6,15 +6,16 @@ import {
   Flex,
   Image,
   FormControl,
-  FormLabel,
-  FormErrorMessage,
   Input,
   Button,
+  useToast,
+  Alert,
 } from '@chakra-ui/core';
 import coolGuy from '../images/cool-guy.jpg';
 
 const Form = () => {
   const { handleSubmit, errors, register, formState } = useForm();
+  const toast = useToast();
 
   function onSubmit(values) {
     setTimeout(() => {
@@ -31,8 +32,8 @@ const Form = () => {
   }
 
   return (
-    <Flex w="100%" h="100vh">
-      <Flex w="45%" h="100vh" direction="column">
+    <Flex w="100%" h="100vh" className='mobile-switch-to-column' align='center'>
+      <Flex w="45%" h="100vh" direction="column" align='center' className='mobile-switch-to-full-width'>
         <Flex w="100%" h="10vh" align="center">
           <Heading p={5} color="#3B3187" fontFamily="Rubik">
             Twiclo
@@ -52,12 +53,12 @@ const Form = () => {
             justify="space-evenly"
             align="center"
           >
-            <Flex w="50%" justify="center" align="center">
+            <Flex w="50%" justify="center" align="center" className='mobile-switch-to-full-width'>
               <Heading color="#3B3187" textAlign="center">
                 Welcome back!
               </Heading>
             </Flex>
-            <Flex w="50%" direction="column">
+            <Flex w="50%" direction="column" className='mobile-switch-to-full-width'>
               <Flex w="60%" m={2} justify="space-between" align="flex-end">
                 <Heading size="lg" color="#3B3187">
                   Log In
@@ -66,23 +67,29 @@ const Form = () => {
                   Sign up
                 </Heading>
               </Flex>
-              <form onSubmit={handleSubmit(onSubmit)}>
-                <FormControl isRequired>
+              <Flex as='form' justify='space-evenly' direction='column' onSubmit={handleSubmit(onSubmit)}>
+                <FormControl isRequired isInvalid={errors.name}>
                   <Input
                     name="email"
                     placeholder="Email address"
-                    ref={register({ validate: validateEmail })}
-                    m={2}
+                    ref={register({
+                      pattern: {
+                        value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                        message: 'Please enter a valid email address.',
+                      },
+                    })}
+                    my={1}
                     bg="#F2F6FD"
                   />
                 </FormControl>
-                <FormControl>
+                {errors.email && <Alert my={1} w="100%" status="error">{errors.email.message}</Alert>}
+                <FormControl isRequired>
                   <Input
                     name="password"
                     placeholder="Password"
                     ref={register}
                     type="password"
-                    m={2}
+                    my={1}
                     bg="#F2F6FD"
                   />
                 </FormControl>
@@ -99,13 +106,13 @@ const Form = () => {
                     Log in
                   </Button>
                 </Flex>
-              </form>
+              </Flex>
             </Flex>
           </Flex>
         </Flex>
       </Flex>
-      <Flex w="55%" h="100vh" bg="blue.300">
-        <Image src={coolGuy} h="auto" maxWidth="100%"></Image>
+      <Flex w="55%" h="100vh">
+        <Image src={coolGuy} h="auto" maxWidth="100%"  className='mobile-hidden'></Image>
       </Flex>
     </Flex>
   );

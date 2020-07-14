@@ -10,3 +10,18 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+@media only screen and (max-width: 800px) {
+
+  .mobile-switch-to-column {
+    flex-direction: column;
+  }
+
+  .mobile-switch-to-full-width {
+    width: 90% !important; /* have to override chakra ui here */
+  }
+
+  .mobile-hidden {
+    width: 0%;
+  }
+}
