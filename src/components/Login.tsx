@@ -5,14 +5,11 @@ import {
   FormControl,
   Input,
   Button,
-  useToast,
   Alert,
-  Heading,
 } from '@chakra-ui/core';
 
 const Login = () => {
   const { handleSubmit, errors, register, formState } = useForm();
-  const toast = useToast();
 
   function onLogin(values) {
     setTimeout(() => {

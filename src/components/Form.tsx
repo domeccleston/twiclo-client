@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { useForm } from 'react-hook-form';
 import '../index.css';
-import { Heading, Flex, Image, useToast } from '@chakra-ui/core';
+import { Heading, Flex, Image } from '@chakra-ui/core';
 
 import Login from './Login';
 import Signup from './Signup';
